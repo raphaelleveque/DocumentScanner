@@ -137,7 +137,7 @@
 		CBE98F8328075F2E007BCB91 /* libopencv_optflow.4.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_optflow.4.5.5.dylib; sourceTree = "<group>"; };
 		CBE98F8428075F2E007BCB91 /* libopencv_photo.4.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_photo.4.5.5.dylib; sourceTree = "<group>"; };
 		CBE98F8528075F2E007BCB91 /* libopencv_quality.4.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_quality.4.5.5.dylib; sourceTree = "<group>"; };
-		CBE98FBE280760FD007BCB91 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
+		CBE98FBF2807628B007BCB91 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +210,7 @@
 		CBE98F3B28075E78007BCB91 = {
 			isa = PBXGroup;
 			children = (
+				CBE98FBF2807628B007BCB91 /* info.plist */,
 				CBE98F5D28075F2D007BCB91 /* libopencv_alphamat.4.5.5.dylib */,
 				CBE98F7928075F2E007BCB91 /* libopencv_aruco.4.5.5.dylib */,
 				CBE98F6728075F2D007BCB91 /* libopencv_barcode.4.5.5.dylib */,
@@ -282,7 +283,6 @@
 		CBE98F4628075E78007BCB91 /* DocumentScanner */ = {
 			isa = PBXGroup;
 			children = (
-				CBE98FBE280760FD007BCB91 /* Resources */,
 				CBE98F4728075E78007BCB91 /* main.cpp */,
 			);
 			path = DocumentScanner;

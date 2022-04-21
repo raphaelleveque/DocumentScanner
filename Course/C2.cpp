@@ -27,7 +27,7 @@ Mat imageBlur(Mat img) {
 }
 
 // Canny is not perfect, there are some flaws because the canny line is too thin
-// If we dilatate the canny image, we get a better edge detector
+// If we dilate the canny image, we get a better edge detector
 Mat imageCanny(Mat img) {
     Mat imgBlur = imageBlur(img);
     Mat imgCanny;

@@ -14,7 +14,8 @@ void getContours(Mat imgDil, Mat &img) {
     // -1 = all contours
     //drawContours(img, contours, -1, Scalar(255, 0, 255), 2);
     
-    vector<vector<Point>> conPoly(contours.size());
+    // contournCount tells us how many points there are in the contourn. i.e: 3 = triangle
+    vector<vector<Point>> contournCount(contours.size());
     vector<Rect> boundRect(contours.size());   // This will store rectangle coordinates
     // In the image, there may be noises, or something other than the shape we want
     // We can remove them
@@ -27,18 +28,18 @@ void getContours(Mat imgDil, Mat &img) {
             // The boolean value is to tell whether the shape is closed or not
             double peri = arcLength(contours[i], true);
             // Find how many vertices there are in the shape
-            approxPolyDP(contours[i], conPoly[i], 0.02 * peri, true);
+            approxPolyDP(contours[i], contournCount[i], 0.02 * peri, true);
             // In this case, I'm using 'i' because it will draw one shape by one, only if it's above 1000
             drawContours(img, contours, i, Scalar(255, 0, 255), 2);
             
             // boundingRect find the bounding rectangle around the rectangle
-            boundRect[i] = boundingRect(conPoly[i]);
+            boundRect[i] = boundingRect(contournCount[i]);
             
             // This will draw a rectangle where we found the vertices
             rectangle(img, boundRect[i].tl(), boundRect[i].br(), Scalar(), 5);
             
             // This will tell how many vertices there are in the shape
-            int objCor = (int)conPoly[i].size();
+            int objCor = (int)contournCount[i].size();
             if (objCor == 3)
                 objectType = "Triangle";
             else if (objCor == 4) {

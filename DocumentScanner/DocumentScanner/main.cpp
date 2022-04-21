@@ -61,16 +61,65 @@ void drawPoints (Mat &originalImg, vector<Point> points, Scalar color) {
 }
 
 
+// The README.me image, contours, showed the contours position, which was 0-3-1-2
+// We want to reorder it to make it 0-1-2-3
+// To do that, we add the coordinates, the highest is the (0,0), and the lowest will be the origin's oposite
+vector<Point> reorder(vector<Point> points) {
+    vector<Point> newPoints;
+    vector<int> summedPoints, subtractedPoints;
+    
+    for (int i = 0; i < 4; i++) {
+        summedPoints.push_back(points[i].x + points[i].y);
+        subtractedPoints.push_back(points[i].x - points[i].y);
+    }
+    
+    Point firstPoint = points[min_element(summedPoints.begin(), summedPoints.end()) -           summedPoints.begin()];
+    Point secondPoint = points[max_element(subtractedPoints.begin(), subtractedPoints.end()) -           subtractedPoints.begin()];
+    Point thirdPoint = points[min_element(subtractedPoints.begin(), subtractedPoints.end()) -           subtractedPoints.begin()];
+    Point lastPoint = points[max_element(summedPoints.begin(), summedPoints.end()) -           summedPoints.begin()];
+    
+    newPoints.push_back(firstPoint);
+    newPoints.push_back(secondPoint);
+    newPoints.push_back(thirdPoint);
+    newPoints.push_back(lastPoint);
+    
+    return newPoints;
+}
+
+// This function get all contours and applies a perspective transformation to the image
+// It takes the source points and transform them as if the coordinates are (0,0) to (width, height),
+// ignoring if the original image is distorted
+void getWarp(Mat img, Mat &warpImg, vector<Point> points, const float width, const float height) {
+    Point2f source[4] = {points[0], points[1], points[2], points[3]};
+    Point2f destination[4] = { {0, 0}, {width, 0}, {0, height}, {width, height} };
+    
+    Mat matrix = getPerspectiveTransform(source, destination);
+    warpPerspective(img, warpImg, matrix, Point(width, height));
+}
+
 
 int main() {
-    string path = "/Users/raphaelleveque/Desktop/cs/OpenCV/OpenCV/images/original_image.jpeg";
+    // Reading Image
+    // type your path:
+    string path = NULL;
     Mat originalImg = imread(path);
 
+    // Preprocessing image
     Mat thresholdImg = preProcessing(originalImg);
+    
+    // Getting contours and drawing them
     vector<Point> initialPoints = getContours(thresholdImg);
-    drawPoints(originalImg, initialPoints, Scalar(255, 255, 0));
+    vector<Point> finalPoints = reorder(initialPoints);
+    //drawPoints(originalImg, finalPoints, Scalar(0, 255, 255));
+    
+    // Warp
+    const float width = 420, height = 596;  // A4 paper
+    Mat warpImg;
+    getWarp(originalImg, warpImg, finalPoints, width, height);
+
     imshow("Image Dilation", thresholdImg);
     imshow("Image", originalImg);
+    imshow("Final Result", warpImg);
     waitKey(0);
 
     

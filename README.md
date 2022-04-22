@@ -25,4 +25,4 @@ But that wasn't enough because the points' order wasn't good, I needed a differe
 ![Reordering](https://github.com/raphaelleveque/DocumentScanner/blob/main/images/after_reorder.png)
 
 After that, I just needed to crop the image so I can have a great 2D image from the Document
-![Final photo](https://github.com/raphaelleveque/DocumentScanner/blob/main/images/final_result.png)
+![Final photo](https://github.com/raphaelleveque/DocumentScanner/blob/main/images/final_result.png)reorganizing

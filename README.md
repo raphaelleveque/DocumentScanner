@@ -9,7 +9,7 @@ The learning section is pretty straightforward, the [Course](https://github.com/
 
 
 ## Practicing
-The practicing section has the [Document Scanner Project](https://github.com/raphaelleveque/DocumentScanner/tree/main/DocumentScanner).
+The practicing section has the [Document Scanner Project](https://github.com/raphaelleveque/DocumentScanner/tree/main/DocumentScanner). <br/>
 Using a C++ library, OpenCV, I created a Document Scanner that crops an image of a document and applies an image transformation as if the document was seen from above. In order to do that, I used image processing fundamentals, such as: image enhancement, gray scale transformation techniques, image sharpening, etc
 
 
